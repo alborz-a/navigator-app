@@ -32,8 +32,7 @@ jobs:
           node-version: "18"
 
       - name: Yarn install
-        run: yarn install --frozen-lockfile
-
+        run: yarn install
       - name: Assemble Debug APK
         working-directory: android
         run: ./gradlew assembleDebug --no-daemon
