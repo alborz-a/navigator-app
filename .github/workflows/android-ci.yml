@@ -108,24 +108,17 @@ jobs:
           echo "GOOGLE_IOS_CLIENT_ID=${{ secrets.GOOGLE_IOS_CLIENT_ID }}" >> .env
           echo "TRANSISTORSOFT_LICENSE_KEY=${{ secrets.TRANSISTORSOFT_LICENSE_KEY }}" >> .env
 
-      - name: Generate google-services.json (from secret) and validate
+      - name: Generate google-services.json (from secret)
         env:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: |
-          # create directory and write file preserving newlines
           mkdir -p android/app
           printf '%s' "$GOOGLE_SERVICES_JSON" > android/app/google-services.json
 
-          # Validate JSON quickly; fail early if malformed
-          python - <<'PY'
-import json,sys
-try:
-  json.load(open('android/app/google-services.json', 'rb'))
-  print('google-services.json -> valid JSON')
-except Exception as e:
-  print('Invalid google-services.json:', e)
-  sys.exit(1)
-PY
+      - name: Validate google-services.json
+        run: |
+          python -c "import json; json.load(open('android/app/google-services.json')); print('google-services.json is valid')"
+
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
