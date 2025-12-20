@@ -97,16 +97,20 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Create .env file (android_build)
+      - name: Create .env
         run: |
-          echo "APP_LINK_PREFIX=${{ secrets.APP_LINK_PREFIX }}" > .env
-          echo "FLEETBASE_KEY=${{ secrets.FLEETBASE_KEY }}" >> .env
-          echo "GOOGLE_MAPS_API_KEY=${{ secrets.GOOGLE_MAPS_API_KEY }}" >> .env
-          echo "FACEBOOK_APP_ID=${{ secrets.FACEBOOK_APP_ID }}" >> .env
-          echo "FACEBOOK_CLIENT_TOKEN=${{ secrets.FACEBOOK_CLIENT_TOKEN }}" >> .env
-          echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> .env
-          echo "GOOGLE_IOS_CLIENT_ID=${{ secrets.GOOGLE_IOS_CLIENT_ID }}" >> .env
-          echo "TRANSISTORSOFT_LICENSE_KEY=${{ secrets.TRANSISTORSOFT_LICENSE_KEY }}" >> .env
+          cat > .env <<EOF
+          APP_NAME=EtemadLife
+          APP_IDENTIFIER=delivery.etemadlife.platform.drivers
+          APP_LINK_PREFIX=dummy
+          FLEETBASE_KEY=dummy
+          GOOGLE_MAPS_API_KEY=dummy
+          DEFAULT_COORDINATES=36.5399,52.6783
+          TRANSISTORSOFT_LICENSE_KEY=dummy
+          FACEBOOK_APP_ID=dummy
+          FACEBOOK_CLIENT_TOKEN=dummy
+          EOF
+
 
       - name: Generate google-services.json (from secret)
         env:
