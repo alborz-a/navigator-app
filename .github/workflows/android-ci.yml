@@ -1,4 +1,4 @@
-name: Navigator App CI
+name: Navigator App Android CI
 
 on:
   pull_request:
