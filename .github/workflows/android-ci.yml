@@ -1,4 +1,4 @@
-name: Navigator App Android CI
+name: Navigator Android App CI
 
 on:
   pull_request:
@@ -113,12 +113,12 @@ jobs:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: |
           mkdir -p android/app
+          # write file preserving newlines
           printf '%s' "$GOOGLE_SERVICES_JSON" > android/app/google-services.json
 
       - name: Validate google-services.json
         run: |
-          python -c "import json; json.load(open('android/app/google-services.json')); print('google-services.json is valid')"
-
+          python -c "import json,sys; json.load(open('android/app/google-services.json','rb')); print('google-services.json -> valid JSON')"
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -144,8 +144,6 @@ jobs:
           else
             SDKMGR=$(ls -1d "$ANDROID_SDK_ROOT/cmdline-tools"/*/bin/sdkmanager 2>/dev/null | head -n1 || true)
             if [ -z "$SDKMGR" ]; then
-              echo "No cmdline-tools found; installing 'cmdline-tools;latest' with the preinstalled sdkmanager..."
-              # Use the prebundled sdkmanager path on GH runners
               SDKMGR="$ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager"
               "$SDKMGR" "cmdline-tools;latest"
               SDKMGR="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager"
@@ -154,10 +152,8 @@ jobs:
 
           echo "Using sdkmanager at: $SDKMGR"
 
-          # Accept licenses; don't fail on SIGPIPE from 'yes'
           yes | "$SDKMGR" --licenses >/dev/null 2>&1 || true
 
-          # Helper: install component if missing
           need() {
             local p="$1"
             if ! "$SDKMGR" --list_installed | grep -q "^  $p$"; then
@@ -168,13 +164,11 @@ jobs:
             fi
           }
 
-          # Match project pins (adjust if you change compileSdkVersion)
           need "platforms;android-35"
           need "build-tools;35.0.0"
           need "ndk;27.1.12297006"
           need "cmake;3.22.1"
 
-          # Sanity output
           "$ANDROID_SDK_ROOT/cmake/3.22.1/bin/cmake" --version || true
           test -f "$ANDROID_SDK_ROOT/ndk/27.1.12297006/source.properties" && echo "✅ NDK 27.1.12297006 installed"
 
@@ -247,15 +241,10 @@ jobs:
         run: |
           mkdir -p android/app
           printf '%s' "$GOOGLE_SERVICES_JSON" > android/app/google-services.json
-          python - <<'PY'
-import json,sys
-try:
-  json.load(open('android/app/google-services.json','rb'))
-  print('google-services.json -> valid JSON')
-except Exception as e:
-  print('Invalid google-services.json:', e)
-  sys.exit(1)
-PY
+
+      - name: Validate google-services.json (release)
+        run: |
+          python -c "import json,sys; json.load(open('android/app/google-services.json','rb')); print('google-services.json -> valid JSON')"
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
