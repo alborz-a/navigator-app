@@ -79,6 +79,7 @@ ios/fastlane
 
 # CocoaPods
 **/Pods/
+Podfile.lock
 
 # react-native-config codegen
 ios/tmp.xcconfig
@@ -94,3 +95,6 @@ navigator.config.js
 .tamagui
 vendor
 *.pxd
+
+# Yarn lock file
+yarn.lock

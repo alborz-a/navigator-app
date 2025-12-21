@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Switch, Label, XStack } from 'tamagui';
+import { useEffect, useState } from 'react';
+import { Label, Switch, XStack } from 'tamagui';
 import { useAuth } from '../contexts/AuthContext';
 import useAppTheme from '../hooks/use-app-theme';
 
@@ -16,6 +16,11 @@ const DriverOnlineToggle = ({ showLabel = false, ...props }) => {
             setChecked(isOnline);
         } catch (err) {
             console.warn('Error attempting to change driver online status:', err);
+            // Revert to previous state on error
+            setChecked(!checked);
+            // Show error message to user
+            alert('Failed to update online status. Please try again.');
+            console.error(err);
         }
     };
 

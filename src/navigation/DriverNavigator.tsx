@@ -1,56 +1,55 @@
-import { createStaticNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, Platform } from 'react-native';
-import { BlurView } from '@react-native-community/blur';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
-    faHome,
-    faGaugeHigh,
-    faComments,
-    faWalkieTalkie,
-    faClipboardList,
-    faClipboard,
     faChartLine,
-    faUser,
-    faTriangleExclamation,
+    faClipboard,
+    faClipboardList,
+    faComments,
     faFlag,
+    faGaugeHigh,
+    faHome,
     faTimes,
+    faTriangleExclamation,
+    faUser,
+    faWalkieTalkie,
 } from '@fortawesome/free-solid-svg-icons';
-import { useTheme, Text, View, XStack, Image } from 'tamagui';
-import { navigatorConfig, get, config, toArray, getTheme } from '../utils';
-import { configCase } from '../utils/format';
-import { format } from 'date-fns';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { PortalHost } from '@gorhom/portal';
-import { useIsNotAuthenticated, useIsAuthenticated } from '../contexts/AuthContext';
-import { useTempStore } from '../contexts/TempStoreContext';
-import DriverDashboardScreen from '../screens/DriverDashboardScreen';
-import DriverOrderManagementScreen from '../screens/DriverOrderManagementScreen';
-import OrderScreen from '../screens/OrderScreen';
-import EntityScreen from '../screens/EntityScreen';
-import ProofOfDeliveryScreen from '../screens/ProofOfDeliveryScreen';
-import DriverReportScreen from '../screens/DriverReportScreen';
-import CreateIssueScreen from '../screens/CreateIssueScreen';
-import EditIssueScreen from '../screens/EditIssueScreen';
-import IssueScreen from '../screens/IssueScreen';
-import CreateFuelReportScreen from '../screens/CreateFuelReportScreen';
-import EditFuelReportScreen from '../screens/EditFuelReportScreen';
-import FuelReportScreen from '../screens/FuelReportScreen';
-import ChatHomeScreen from '../screens/ChatHomeScreen';
-import ChatChannelScreen from '../screens/ChatChannelScreen';
-import ChatParticipantsScreen from '../screens/ChatParticipantsScreen';
-import CreateChatChannelScreen from '../screens/CreateChatChannelScreen';
-import DriverProfileScreen from '../screens/DriverProfileScreen';
-import DriverAccountScreen from '../screens/DriverAccountScreen';
-import { useOrderManager } from '../contexts/OrderManagerContext';
+import { BlurView } from '@react-native-community/blur';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { format } from 'date-fns';
+import { Platform, StyleSheet } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
+import { Image, Text, useTheme, View, XStack } from 'tamagui';
+import BackButton from '../components/BackButton';
+import Badge from '../components/Badge';
+import DriverOnlineToggle from '../components/DriverOnlineToggle';
+import HeaderButton from '../components/HeaderButton';
 import { useChat } from '../contexts/ChatContext';
+import { useOrderManager } from '../contexts/OrderManagerContext';
+import { useTempStore } from '../contexts/TempStoreContext';
 import useAppTheme from '../hooks/use-app-theme';
 import DriverLayout from '../layouts/DriverLayout';
-import DriverOnlineToggle from '../components/DriverOnlineToggle';
-import BackButton from '../components/BackButton';
-import HeaderButton from '../components/HeaderButton';
-import Badge from '../components/Badge';
-import DeviceInfo from 'react-native-device-info';
+import ChatChannelScreen from '../screens/ChatChannelScreen';
+import ChatHomeScreen from '../screens/ChatHomeScreen';
+import ChatParticipantsScreen from '../screens/ChatParticipantsScreen';
+import CreateChatChannelScreen from '../screens/CreateChatChannelScreen';
+import CreateFuelReportScreen from '../screens/CreateFuelReportScreen';
+import CreateIssueScreen from '../screens/CreateIssueScreen';
+import DriverAccountScreen from '../screens/DriverAccountScreen';
+import DriverDashboardScreen from '../screens/DriverDashboardScreen';
+import DriverOrderManagementScreen from '../screens/DriverOrderManagementScreen';
+import DriverProfileScreen from '../screens/DriverProfileScreen';
+import DriverReportScreen from '../screens/DriverReportScreen';
+import EditFuelReportScreen from '../screens/EditFuelReportScreen';
+import EditIssueScreen from '../screens/EditIssueScreen';
+import EntityScreen from '../screens/EntityScreen';
+import FuelReportScreen from '../screens/FuelReportScreen';
+import IssueScreen from '../screens/IssueScreen';
+import OrderScreen from '../screens/OrderScreen';
+import ProofOfDeliveryScreen from '../screens/ProofOfDeliveryScreen';
+import { config, get, getTheme, navigatorConfig, toArray } from '../utils';
+import { configCase } from '../utils/format';
+import { translate } from '../utils/localize';
 
 const isAndroid = Platform.OS === 'android';
 const importedIconsMap = {
@@ -81,8 +80,10 @@ function createTabScreens() {
     const screens = {
         DriverDashboardTab: {
             screen: DriverDashboardTab,
-            options: {
-                tabBarLabel: config('DRIVER_DASHBOARD_TAB_LABEL', 'Dash'),
+            options: () => {
+                return {
+                    tabBarLabel: config('DRIVER_DASHBOARD_TAB_LABEL', translate('DriverNavigator.dashTab')),
+                };
             },
         },
         DriverTaskTab: {
@@ -91,7 +92,7 @@ function createTabScreens() {
                 const { allActiveOrders } = useOrderManager();
 
                 return {
-                    tabBarLabel: config('DRIVER_ORDER_TAB_LABEL', 'Orders'),
+                    tabBarLabel: config('DRIVER_ORDER_TAB_LABEL', translate('DriverNavigator.ordersTab')),
                     tabBarBadge: allActiveOrders.length,
                     tabBarBadgeStyle: {
                         marginRight: -5,
@@ -104,7 +105,7 @@ function createTabScreens() {
             screen: DriverReportTab,
             options: () => {
                 return {
-                    tabBarLabel: config('DRIVER_REPORT_TAB_LABEL', 'Reports'),
+                    tabBarLabel: config('DRIVER_REPORT_TAB_LABEL', translate('DriverNavigator.reportsTab')),
                 };
             },
         },
@@ -114,7 +115,7 @@ function createTabScreens() {
                 const { unreadCount } = useChat();
 
                 return {
-                    tabBarLabel: config('DRIVER_CHAT_TAB_LABEL', 'Chat'),
+                    tabBarLabel: config('DRIVER_CHAT_TAB_LABEL', translate('DriverNavigator.chatTab')),
                     tabBarBadge: unreadCount,
                     tabBarBadgeStyle: {
                         marginRight: -5,
@@ -127,7 +128,7 @@ function createTabScreens() {
             screen: DriverAccountTab,
             options: () => {
                 return {
-                    tabBarLabel: config('DRIVER_ACCOUNT_TAB_LABEL', 'Account'),
+                    tabBarLabel: config('DRIVER_ACCOUNT_TAB_LABEL', translate('DriverNavigator.accountTab')),
                 };
             },
         },
@@ -306,7 +307,7 @@ const DriverReportTab = createNativeStackNavigator({
                     headerTitle: '',
                     headerLeft: (props) => (
                         <Text color='$textPrimary' fontSize={20} fontWeight='bold'>
-                            Create a new Fuel Report
+                            {translate('DriverNavigator.createFuelReport')}
                         </Text>
                     ),
                     headerRight: (props) => <HeaderButton icon={faTimes} onPress={() => navigation.goBack()} />,
@@ -328,7 +329,7 @@ const DriverReportTab = createNativeStackNavigator({
                     headerTitle: '',
                     headerLeft: (props) => (
                         <Text color='$textPrimary' fontSize={18} fontWeight='bold' numberOfLines={1}>
-                            Edit Fuel Report from {format(new Date(fuelReport.created_at), 'MMM dd, yyyy HH:mm')}
+                            {translate('DriverNavigator.editFuelReport', { date: format(new Date(fuelReport.created_at), 'MMM dd, yyyy HH:mm') })}
                         </Text>
                     ),
                     headerRight: (props) => <HeaderButton icon={faTimes} onPress={() => navigation.goBack()} />,
@@ -370,7 +371,7 @@ const DriverReportTab = createNativeStackNavigator({
                     headerTitle: '',
                     headerLeft: (props) => (
                         <Text color='$textPrimary' fontSize={20} fontWeight='bold'>
-                            Create a new Issue
+                            {translate('DriverNavigator.createIssue')}
                         </Text>
                     ),
                     headerRight: (props) => <HeaderButton icon={faTimes} onPress={() => navigation.goBack()} />,
@@ -392,7 +393,7 @@ const DriverReportTab = createNativeStackNavigator({
                     headerTitle: '',
                     headerLeft: (props) => (
                         <Text color='$textPrimary' fontSize={18} fontWeight='bold' numberOfLines={1}>
-                            Edit Issue from {format(new Date(issue.created_at), 'MMM dd, yyyy HH:mm')}
+                            {translate('DriverNavigator.editIssue', { date: format(new Date(issue.created_at), 'MMM dd, yyyy HH:mm') })}
                         </Text>
                     ),
                     headerRight: (props) => <HeaderButton icon={faTimes} onPress={() => navigation.goBack()} />,
@@ -511,7 +512,7 @@ const DriverNavigator = createBottomTabNavigator({
                     <XStack alignItems='center'>
                         <Image source={require('../../assets/navigator-icon-transparent.png')} style={{ width: 18, height: 18, marginRight: 5 }} />
                         <Text color='$textPrimary' fontSize={20} fontWeight='bold'>
-                            Navigator
+                            {translate('DriverNavigator.navigator')}
                         </Text>
                     </XStack>
                     <Text color='$textSecondary' fontSize={8} ml={25}>

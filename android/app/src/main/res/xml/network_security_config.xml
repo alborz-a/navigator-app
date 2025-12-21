@@ -21,4 +21,8 @@
             <certificates src="system"/>
         </trust-anchors>
     </domain-config>
+
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">4.182.232.165</domain>
+    </domain-config>
 </network-security-config>

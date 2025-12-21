@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
-import { FlatList, TextInput, Keyboard } from 'react-native';
-import { countries, getEmojiFlag } from 'countries-list';
-import BottomSheet, { BottomSheetView, BottomSheetFlatList, BottomSheetTextInput } from '@gorhom/bottom-sheet';
-import { useTheme, View, Text, Button, XStack, YStack, Input } from 'tamagui';
+import BottomSheet, { BottomSheetFlatList, BottomSheetTextInput, BottomSheetView } from '@gorhom/bottom-sheet';
 import { Portal } from '@gorhom/portal';
-import { getCountryByPhoneCode, getCountryByISO2, parsePhoneNumber, debounce } from '../utils';
+import { countries, getEmojiFlag } from 'countries-list';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Keyboard } from 'react-native';
+import { Button, Input, Text, useTheme, XStack, YStack } from 'tamagui';
 import useAppTheme from '../hooks/use-app-theme';
+import { getCountryByISO2, parsePhoneNumber } from '../utils';
+import { translate } from '../utils/localize';
 
 function getDefaultValues(value = null, fallbackCountry = 'US') {
     if (typeof value === 'string' && value.startsWith('+')) {
@@ -30,7 +31,7 @@ const countryList = Object.entries(countries).map(([code, details]) => ({
     emoji: getEmojiFlag(code),
 }));
 
-const PhoneInput = ({ value, onChange, bg, width = '100%', defaultCountryCode = 'US', size = '$5', wrapperProps = {} }) => {
+const PhoneInput = ({ value, onChange, bg, width = '100%', defaultCountryCode = 'EG', size = '$5', wrapperProps = {} }) => {
     const defaultValue = getDefaultValues(value, defaultCountryCode);
     const theme = useTheme();
     const { isDarkMode } = useAppTheme();
@@ -91,7 +92,7 @@ const PhoneInput = ({ value, onChange, bg, width = '100%', defaultCountryCode = 
                     size={size}
                     ref={phoneInputRef}
                     flex={1}
-                    placeholder='Enter phone number'
+                    placeholder={translate('PhoneInput.enterPhoneNumber')}
                     keyboardType='phone-pad'
                     value={phoneNumber}
                     onChangeText={setPhoneNumber}
@@ -123,7 +124,7 @@ const PhoneInput = ({ value, onChange, bg, width = '100%', defaultCountryCode = 
                     <YStack px='$2'>
                         <BottomSheetTextInput
                             ref={searchInputRef}
-                            placeholder='Search country'
+                            placeholder={translate('PhoneInput.searchCountry')}
                             onChangeText={setSearchTerm}
                             autoCapitalize={false}
                             autoComplete='off'

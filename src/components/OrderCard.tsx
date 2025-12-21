@@ -1,19 +1,19 @@
-import React, { FC, useEffect, useState, useMemo } from 'react';
-import { Pressable } from 'react-native';
-import { YStack, XStack, Text, styled, useTheme } from 'tamagui';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faBox } from '@fortawesome/free-solid-svg-icons';
-import { formatDuration, titleize } from '../utils/format';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { format as formatDate } from 'date-fns';
-import useFleetbase from '../hooks/use-fleetbase';
-import useOrderResource from '../hooks/use-order-resource';
+import { useMemo } from 'react';
+import { Pressable } from 'react-native';
+import { Text, XStack, YStack, useTheme } from 'tamagui';
 import useAppTheme from '../hooks/use-app-theme';
-import OrderProgressBar from './OrderProgressBar';
-import LiveOrderRoute from './LiveOrderRoute';
-import OrderWaypointList from './OrderWaypointList';
-import MultipleCustomerAvatars from './MultipleCustomerAvatars';
-import LoadingText from './LoadingText';
+import useOrderResource from '../hooks/use-order-resource';
+import { formatDuration, titleize } from '../utils/format';
+import { translate } from '../utils/localize';
 import Badge from './Badge';
+import LiveOrderRoute from './LiveOrderRoute';
+import LoadingText from './LoadingText';
+import MultipleCustomerAvatars from './MultipleCustomerAvatars';
+import OrderProgressBar from './OrderProgressBar';
+import OrderWaypointList from './OrderWaypointList';
 
 const INFO_FIELD_VALUE_MIN_HEIGHT = 30;
 export const OrderCard = ({ order, onPress }) => {
@@ -81,7 +81,7 @@ export const OrderCard = ({ order, onPress }) => {
                                 <YStack flex={1} gap='$2'>
                                     <YStack flex={1} gap='$1'>
                                         <Text color='$textPrimary' fontSize={12}>
-                                            {waypointCustomers.length > 0 ? 'Customers:' : 'Customer:'}
+                                            {waypointCustomers.length > 0 ? translate('OrderCard.customers') : translate('OrderCard.customer')}
                                         </Text>
                                         <YStack minHeight={INFO_FIELD_VALUE_MIN_HEIGHT}>
                                             {waypointCustomers.length > 0 ? (
@@ -102,7 +102,7 @@ export const OrderCard = ({ order, onPress }) => {
                                                         </>
                                                     ) : (
                                                         <Text color='$textSecondary' fontSize={12}>
-                                                            N/A
+                                                            {translate('OrderCard.na')}
                                                         </Text>
                                                     )}
                                                 </>
@@ -111,11 +111,11 @@ export const OrderCard = ({ order, onPress }) => {
                                     </YStack>
                                     <YStack flex={1} gap='$1'>
                                         <Text color='$textPrimary' fontSize={12}>
-                                            Date Scheduled:
+                                            {translate('OrderCard.dateScheduled')}
                                         </Text>
                                         <YStack minHeight={INFO_FIELD_VALUE_MIN_HEIGHT}>
                                             <LoadingText
-                                                text={order.getAttribute('scheduled_at') ? formatDate(new Date(order.getAttribute('scheduled_at')), 'PP HH:mm') : 'N/A'}
+                                                text={order.getAttribute('scheduled_at') ? formatDate(new Date(order.getAttribute('scheduled_at')), 'PP HH:mm') : translate('OrderCard.na')}
                                                 numberOfLines={1}
                                                 color='$textSecondary'
                                                 fontSize={12}
@@ -126,11 +126,11 @@ export const OrderCard = ({ order, onPress }) => {
                                 <YStack flex={1} gap='$2'>
                                     <YStack flex={1} gap='$1'>
                                         <Text color='$textPrimary' fontSize={12}>
-                                            POD Required:
+                                            {translate('OrderCard.podRequired')}
                                         </Text>
                                         <YStack minHeight={INFO_FIELD_VALUE_MIN_HEIGHT}>
                                             <LoadingText
-                                                text={order.getAttribute('pod_required') ? titleize(order.getAttribute('pod_method')) : 'N/A'}
+                                                text={order.getAttribute('pod_required') ? titleize(order.getAttribute('pod_method')) : translate('OrderCard.na')}
                                                 numberOfLines={1}
                                                 color='$textSecondary'
                                                 fontSize={12}
@@ -139,11 +139,11 @@ export const OrderCard = ({ order, onPress }) => {
                                     </YStack>
                                     <YStack flex={1} gap='$1'>
                                         <Text color='$textPrimary' fontSize={12}>
-                                            Dispatched At:
+                                            {translate('OrderCard.dispatchedAt')}
                                         </Text>
                                         <YStack minHeight={INFO_FIELD_VALUE_MIN_HEIGHT}>
                                             <LoadingText
-                                                text={order.getAttribute('dispatched_at') ? formatDate(new Date(order.getAttribute('dispatched_at')), 'PP HH:mm') : 'N/A'}
+                                                text={order.getAttribute('dispatched_at') ? formatDate(new Date(order.getAttribute('dispatched_at')), 'PP HH:mm') : translate('OrderCard.na')}
                                                 numberOfLines={1}
                                                 color='$textSecondary'
                                                 fontSize={12}
@@ -154,11 +154,11 @@ export const OrderCard = ({ order, onPress }) => {
                                 <YStack flex={1} gap='$2'>
                                     <YStack flex={1} gap='$1'>
                                         <Text color='$textPrimary' fontSize={12}>
-                                            ETA:
+                                            {translate('OrderCard.eta')}
                                         </Text>
                                         <YStack minHeight={INFO_FIELD_VALUE_MIN_HEIGHT}>
                                             <LoadingText
-                                                text={trackerData.current_destination_eta === -1 ? 'N/A' : formatDuration(trackerData.current_destination_eta)}
+                                                text={trackerData.current_destination_eta === -1 ? translate('OrderCard.na') : formatDuration(trackerData.current_destination_eta)}
                                                 numberOfLines={1}
                                                 color='$textSecondary'
                                                 fontSize={12}
@@ -167,7 +167,7 @@ export const OrderCard = ({ order, onPress }) => {
                                     </YStack>
                                     <YStack flex={1} gap='$1'>
                                         <Text color='$textPrimary' fontSize={12}>
-                                            ECT:
+                                            {translate('OrderCard.ect')}
                                         </Text>
                                         <YStack minHeight={INFO_FIELD_VALUE_MIN_HEIGHT}>
                                             <LoadingText text={trackerData.estimated_completion_time_formatted} numberOfLines={1} color='$textSecondary' fontSize={12} />

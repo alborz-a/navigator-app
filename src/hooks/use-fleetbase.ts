@@ -10,7 +10,7 @@ const useFleetbase = () => {
 
     const [error, setError] = useState<Error | null>(null);
     const [authToken] = useStorage('_driver_token');
-    const [fleetbase, setFleetbase] = useState<Fleetbase | null>(new Fleetbase(authToken ?? FLEETBASE_KEY, { host: FLEETBASE_HOST }));
+    const [fleetbase, setFleetbase] = useState<Fleetbase | null>(new Fleetbase(FLEETBASE_KEY, { host: FLEETBASE_HOST }));
 
     const hasFleetbaseConfig = useCallback(() => {
         const FLEETBASE_KEY = resolveConnectionConfig('FLEETBASE_KEY');
@@ -24,9 +24,9 @@ const useFleetbase = () => {
         const FLEETBASE_KEY = resolveConnectionConfig('FLEETBASE_KEY');
 
         try {
-            // If authToken is present, initialize a new Fleetbase instance with it,
-            // otherwise fall back to the default configuration.
-            const fleetbase = authToken ? new Fleetbase(authToken, { host: FLEETBASE_HOST }) : new Fleetbase(FLEETBASE_KEY, { host: FLEETBASE_HOST });
+            // Always use FLEETBASE_KEY (API key) for authentication
+            // This allows driver operations without a session token
+            const fleetbase = new Fleetbase(FLEETBASE_KEY, { host: FLEETBASE_HOST });
             setFleetbase(fleetbase);
         } catch (initializationError) {
             setError(initializationError as Error);

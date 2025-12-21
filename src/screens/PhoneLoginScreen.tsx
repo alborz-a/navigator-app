@@ -1,15 +1,16 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { SafeAreaView, Pressable, Keyboard, StyleSheet } from 'react-native';
-import { Spinner, Input, Stack, Text, YStack, useTheme, Button } from 'tamagui';
-import { toast, ToastPosition } from '@backpackapp-io/react-native-toast';
+import { toast } from '@backpackapp-io/react-native-toast';
+import { faArrowLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPaperPlane, faKey, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { isValidPhoneNumber, navigatorConfig } from '../utils';
+import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
+import { Keyboard, Pressable, SafeAreaView, StyleSheet } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import { Button, Spinner, Text, useTheme, YStack } from 'tamagui';
+import PhoneInput from '../components/PhoneInput';
 import { useAuth } from '../contexts/AuthContext';
 import useAppTheme from '../hooks/use-app-theme';
-import PhoneInput from '../components/PhoneInput';
-import LinearGradient from 'react-native-linear-gradient';
+import { isValidPhoneNumber, navigatorConfig } from '../utils';
+import { translate } from '../utils/localize';
 
 const PhoneLoginScreen = () => {
     const navigation = useNavigation();
@@ -24,7 +25,7 @@ const PhoneLoginScreen = () => {
         }
 
         if (!isValidPhoneNumber(phone)) {
-            return toast.error('Invalid phone number provided.');
+            return toast.error(translate('PhoneLoginScreen.invalidPhoneNumber'));
         }
 
         try {
@@ -49,13 +50,13 @@ const PhoneLoginScreen = () => {
             <YStack flex={1} alignItems='center' space='$3'>
                 <YStack space='$2' width='100%' px='$5' pt='$5'>
                     <Text color='$gray-200' fontWeight='bold' fontSize='$8' mb='$3'>
-                        Login via SMS
+                        {translate('PhoneLoginScreen.title')}
                     </Text>
                     <PhoneInput value={phone} onChange={(phoneNumber) => setPhone(phoneNumber)} />
                     <Button size='$5' onPress={handleSendVerificationCode} bg='$primary' width='100%' opacity={isSendingCode ? 0.75 : 1} disabled={isSendingCode} rounded>
                         <Button.Icon>{isSendingCode ? <Spinner color='$white' /> : <FontAwesomeIcon icon={faPaperPlane} color={'#fff'} />}</Button.Icon>
                         <Button.Text color='$white' fontWeight='bold'>
-                            Send Verification Code
+                            {translate('PhoneLoginScreen.sendVerificationCode')}
                         </Button.Text>
                     </Button>
                 </YStack>
@@ -70,7 +71,7 @@ const PhoneLoginScreen = () => {
                             <FontAwesomeIcon icon={faArrowLeft} color={isDarkMode ? theme['textPrimary'].val : theme['$gray-400'].val} />
                         </Button.Icon>
                         <Button.Text color={isDarkMode ? theme['textPrimary'].val : theme['$gray-400'].val} fontWeight='bold'>
-                            Home
+                            {translate('PhoneLoginScreen.home')}
                         </Button.Text>
                     </Button>
                 </YStack>
