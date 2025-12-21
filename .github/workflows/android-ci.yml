@@ -2,9 +2,9 @@ name: Navigator Android App CI
 
 on:
   pull_request:
-    branches: [main]
+    branches: [farsi-localization]
   push:
-    branches: [main]
+    branches: [farsi-localization]
     tags: ['v*']
 
 env:
