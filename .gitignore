@@ -100,3 +100,4 @@ vendor
 # yarn.lock
 node_modules_BAK2/
 node_modules_BAK/
+yarn.lock.BAK
