@@ -33,7 +33,7 @@ android/*.hprof
 android/app/build
 android/.kotlin
 *.aab
-*.apk
+# *.apk
 android/app/src/main/assets/index.android.bundle
 
 # node.js
@@ -91,11 +91,12 @@ android/app/play-store-credentials.json
 
 # Navigator assets/configurations
 #
-navigator.config.js
+# navigator.config.js
 .tamagui
 vendor
 *.pxd
 
 # Yarn lock file
-yarn.lock
+# yarn.lock
+node_modules_BAK2/
 node_modules_BAK/
