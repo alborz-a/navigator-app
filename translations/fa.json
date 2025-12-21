@@ -1,0 +1,224 @@
+{
+    "common": {
+        "fleetbase": "فلیت‌بیس",
+        "navigator": "نویگیتور",
+        "apiKey": "کلید API",
+        "cancel": "لغو",
+        "new": "جدید",
+        "create": "ایجاد",
+        "save": "ذخیره",
+        "delete": "حذف",
+        "edit": "ویرایش",
+        "update": "بروزرسانی",
+        "service": "سرویس",
+        "retry": "تلاش مجدد",
+        "loading": "در حال بارگذاری...",
+        "confirm": "تایید",
+        "confirmation": "تاییدیه",
+        "ok": "باشه",
+        "done": "انجام شد",
+        "tryAgain": "تلاش مجدد"
+    },
+    "buttons": {
+        "continueWithPhone": "ادامه با شماره موبایل",
+        "continueWithApple": "ادامه با اپل",
+        "continueWithFacebook": "ادامه با فیس‌بوک",
+        "continueWithInstagram": "ادامه با اینستاگرام",
+        "continueWithGoogle": "ادامه با گوگل",
+        "sendVerificationCode": "ارسال کد تایید",
+        "home": "خانه"
+    },
+    "PhoneLoginScreen": {
+        "title": "ورود با پیامک",
+        "sendVerificationCode": "ارسال کد تایید",
+        "home": "خانه",
+        "invalidPhoneNumber": "شماره تلفن نامعتبر است."
+    },
+    "PhoneLoginVerifyScreen": {
+        "codeSentTo": "کد به {{phone}} ارسال شد",
+        "verifyCode": "تایید کد",
+        "retry": "تلاش مجدد",
+        "unableToSendSMS": "امکان ارسال پیامک وجود ندارد.",
+        "verificationCodeSentVia": "کد تایید شما از طریق {{method}} ارسال شد."
+    },
+    "DriverDashboardScreen": {
+        "tracking": "رهگیری:",
+        "yes": "بله",
+        "no": "خیر",
+        "location": "موقعیت:",
+        "latitude": "عرض جغرافیایی",
+        "longitude": "طول جغرافیایی",
+        "heading": "جهت",
+        "altitude": "ارتفاع",
+        "activeOrders": "سفارش‌های فعال",
+        "speed": "سرعت"
+    },
+    "DriverProfileScreen": {
+        "account": "حساب کاربری",
+        "organization": "سازمان"
+    },
+    "DriverNavigator": {
+        "navigator": "نویگیتور",
+        "dashTab": "داشبورد",
+        "ordersTab": "سفارش‌ها",
+        "reportsTab": "گزارش‌ها",
+        "chatTab": "چت",
+        "accountTab": "حساب کاربری",
+        "createFuelReport": "ایجاد گزارش سوخت جدید",
+        "editFuelReport": "ویرایش گزارش سوخت مورخ {{date}}",
+        "createIssue": "ایجاد مشکل جدید",
+        "editIssue": "ویرایش مشکل مورخ {{date}}"
+    },
+    "DriverOrderManagementScreen": {
+        "activeOrders": "سفارش‌های فعال: {{count}}",
+        "noCurrentOrders": "هیچ سفارشی برای {{date}} وجود ندارد",
+        "ordersTitle": "سفارش‌های {{day}}",
+        "orders": "سفارش‌ها",
+        "order": "سفارش",
+        "stops": "توقف‌ها",
+        "stop": "توقف",
+        "left": "باقی‌مانده"
+    },
+    "ChatHomeScreen": {
+        "chats": "چت‌ها",
+        "noMessages": "پیامی نیست"
+    },
+    "CreateChatChannelScreen": {
+        "createNewChat": "ایجاد چت جدید",
+        "channelName": "نام کانال",
+        "inputChannelName": "نام کانال چت را وارد کنید...",
+        "selectParticipants": "انتخاب شرکت‌کنندگان:",
+        "unselect": "لغو انتخاب",
+        "select": "انتخاب",
+        "createNewChatButton": "ایجاد چت جدید",
+        "channelNameRequired": "نام کانال چت الزامی است.",
+        "chatCreated": "کانال چت جدید ایجاد شد: {{name}}"
+    },
+    "OrderCard": {
+        "customers": "مشتریان:",
+        "customer": "مشتری:",
+        "dateScheduled": "تاریخ زمان‌بندی:",
+        "podRequired": "نیاز به اثبات تحویل:",
+        "dispatchedAt": "زمان اعزام:",
+        "eta": "زمان تخمینی ورود:",
+        "ect": "زمان تخمینی اتمام:",
+        "na": "نامشخص"
+    },
+    "OrderScreen": {
+        "waypointCompleted": "نقطه مسیر تکمیل شد",
+        "waypointCompletedMessage": "فعالیت نقطه مسیر برای مقصد {{previous}} تکمیل شد. مقصد فعلی شما اکنون {{current}} است. می‌توانید هر زمان با فشردن دکمه \"مقصد فعلی\" مقصد را تغییر دهید.",
+        "continue": "ادامه",
+        "acceptAdhocTitle": "پذیرش سفارش موردی؟",
+        "acceptAdhocMessage": "با پذیرش این سفارش موردی، به شما اختصاص داده می‌شود و سفارش بلافاصله آغاز می‌شود.",
+        "cancel": "لغو",
+        "accept": "پذیرش",
+        "dismissAdhocTitle": "رد سفارش موردی؟",
+        "dismissAdhocMessage": "با رد این سفارش موردی، دیگر به عنوان سفارش در دسترس نمایش داده نمی‌شود.",
+        "ok": "باشه",
+        "orderNotDispatchedTitle": "سفارش هنوز اعزام نشده است",
+        "orderNotDispatchedMessage": "این سفارش هنوز اعزام نشده است، آیا مطمئن هستید که می‌خواهید ادامه دهید؟",
+        "yes": "بله",
+        "warning": "هشتار!",
+        "acceptOrder": "پذیرش سفارش",
+        "dismissOrder": "رد سفارش",
+        "startOrder": "شروع سفارش",
+        "updateActivity": "بروزرسانی فعالیت",
+        "startNavigation": "شروع مسیریابی",
+        "orderInformation": "اطلاعات سفارش",
+        "id": "شناسه",
+        "internalId": "شناسه داخلی",
+        "trackingNumber": "شماره پیگیری",
+        "proofOfDelivery": "اثبات تحویل",
+        "type": "نوع",
+        "dateCreated": "تاریخ ایجاد",
+        "dateScheduled": "تاریخ زمان‌بندی",
+        "dateDispatched": "تاریخ اعزام",
+        "orderRoute": "مسیر سفارش",
+        "orderProgress": "پیشرفت سفارش",
+        "currentDestination": "مقصد فعلی",
+        "nextDestination": "مقصد بعدی",
+        "totalDistance": "مسافت کل",
+        "startTime": "زمان شروع",
+        "currentEta": "زمان تخمینی ورود فعلی",
+        "ect": "زمان تخمینی اتمام",
+        "orderNotes": "یادداشت‌های سفارش",
+        "orderProof": "اثبات سفارش",
+        "orderPayload": "بار سفارش",
+        "customer": "مشتری",
+        "orderDocuments": "اسناد و فایل‌های سفارش",
+        "orderComments": "نظرات سفارش",
+        "updatingActivity": "درحال بروزرسانی فعالیت: {{status}}",
+        "statusUpdated": "وضعیت سفارش بروز شد به: {{status}}",
+        "na": "نامشخص"
+    },
+    "PhoneInput": {
+        "enterPhoneNumber": "شماره تلفن را وارد کنید",
+        "searchCountry": "جستجوی کشور"
+    },
+    "orderStatuses": {
+        "created": "ایجاد شده",
+        "preparing": "در حال آماده‌سازی",
+        "dispatched": "اعزام شده",
+        "driver_enroute": "راننده در مسیر",
+        "pending": "در انتظار",
+        "in_progress": "در حال انجام",
+        "completed": "تکمیل شده"
+    },
+    "BootScreen": {
+        "missingRequiredConfigurationKeys": "کلیدهای پیکربندی مورد نیاز وجود ندارند"
+    },
+    "AccountScreen": {
+        "changeProfilePhotoOptions": {
+            "takePhoto": "گرفتن عکس",
+            "photoLibrary": "کتابخانه عکس",
+            "deleteProfilePhoto": "حذف عکس پروفایل"
+        },
+        "profilePhoto": "عکس پروفایل",
+        "email": "ایمیل",
+        "phoneNumber": "شماره تلفن",
+        "name": "نام",
+        "language": "زبان",
+        "theme": "تم",
+        "deleteAccount": "حذف حساب کاربری",
+        "termsOfService": "شرایط استفاده",
+        "privacyPolicy": "سیاست حفظ حریم خصوصی",
+        "tracking": "رهگیری",
+        "account": "حساب کاربری",
+        "dataProtection": "حفاظت از داده‌ها",
+        "clearCache": "پاک کردن حافظه پنهان",
+        "signOut": "خروج",
+        "signedOut": "خارج شدید.",
+        "cacheCleared": "حافظه پنهان پاک شد.",
+        "schemeChanged": "اکنون از حالت {{selectedScheme}} استفاده می‌شود.",
+        "languageChanged": "اکنون از زبان {{selectedLanguage}} استفاده می‌شود.",
+        "photoChanged": "عکس پروفایل تغییر کرد.",
+        "photoRemoved": "عکس پروفایل حذف شد."
+    },
+    "ProfileScreen": {
+        "organizationChanged": "به سازمان {{selectedOrganization}} تغییر یافت."
+    },
+    "AddNewLocationScreen": {
+        "addNewAddress": "افزودن آدرس جدید",
+        "streetName": "نام خیابان و پلاک",
+        "weThinkYoureAroundHere": "فکر می‌کنیم شما در این اطراف هستید",
+        "cantFindYourAddress": "آدرس خود را پیدا نمی‌کنید؟",
+        "useMapInstead": "از نقشه استفاده کنید"
+    },
+    "SetupWarningScreen": {
+        "configurationMissing": "پیکربندی ناقص است!",
+        "unconfiguredApp": "به نظر می‌رسد اپلیکیشن شما به درستی پیکربندی نشده است.",
+        "envMissing": "در محیط وجود ندارد!"
+    },
+    "DriverReportScreen": {},
+    "LocationPermissionScreen": {
+        "enableLocationServices": "فعال‌سازی سرویس‌های موقعیت مکانی",
+        "enableLocationPrompt": "ما برای ارائه رهگیری زنده و بروزرسانی‌ها به موقعیت مکانی شما نیاز داریم. لطفاً اجازه دسترسی بدهید.",
+        "shareAndContinue": "اشتراک‌گذاری و ادامه",
+        "permissionNeededTitle": "مجوز موقعیت مکانی لازم است",
+        "enableInSettingsTitle": "فعال‌سازی موقعیت مکانی در تنظیمات",
+        "permissionDeniedPrompt": "بدون دسترسی به موقعیت مکانی برخی ویژگی‌ها کار نخواهند کرد. آیا می‌خواهید اکنون اجازه دسترسی بدهید؟",
+        "locationBlockedPrompt": "دسترسی به موقعیت مکانی مسدود شده است. لطفاً تنظیمات را باز کرده و آن را فعال کنید.",
+        "goToSettings": "برو به تنظیمات",
+        "skipForNow": "فعلاً رد کن"
+    }
+}

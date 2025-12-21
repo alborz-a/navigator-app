@@ -47,7 +47,8 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
         if (I18nManager.isRTL !== isRTL) {
             // Note: App needs to be reloaded for RTL changes to take effect
             // You can add RNRestart.Restart() here if you have react-native-restart installed
-            // I18nManager.forceRTL(isRTL);
+            I18nManager.forceRTL(isRTL);
+            I18nManager.allowRTL(isRTL);
         }
     };
 
