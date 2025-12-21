@@ -1,11 +1,7 @@
 name: Navigator Android App CI
 
 on:
-  pull_request:
-    branches: [main]
-  push:
-    branches: [main]
-    tags: ['v*']
+  workflow_dispatch:
 
 env:
   FLEETBASE_KEY: ${{ secrets.FLEETBASE_KEY }}
